@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, status
+from typing import List
 from sqlalchemy.orm import Session
 from trattoria_trussardi.schemas import schemas
 from trattoria_trussardi.app import usuarios
@@ -7,7 +8,7 @@ from trattoria_trussardi.database import database
 database.create_db()
 app = FastAPI()
 
-@app.get('/usuarios', status_code=status.HTTP_200_OK)
+@app.get('/usuarios', status_code=status.HTTP_200_OK, response_model= List[schemas.UsuariosResponse])
 def listar_usuarios(db : Session = Depends(database.get_db)):
     lista_usuarios = usuarios.Usuarios(db).listar()
     return lista_usuarios

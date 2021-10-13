@@ -12,6 +12,7 @@ python-jose = "*"
 python-multipart = "*"
 SQLAlchemy = "*"
 trattoria-trussardi = {editable = true, path = "."}
+alembic = "*"
 
 [dev-packages]
 

@@ -19,7 +19,6 @@ class Pedidos(BaseModel):
     user_id : int
     produto_id : int
     prato_id : int
-    
     class Config:
         orm_mode = True
     
@@ -30,7 +29,24 @@ class Usuarios(BaseModel):
     email : str
     senha : str
     tipo_acesso : str
+    class Config:
+        orm_mode = True
+
+class UsuariosResponse(BaseModel):
     
+    id : Optional[int] = None
+    nome : str
+    email : str
+    tipo_acesso : str
+    class Config:
+        orm_mode = True
+        
+class Clientes(BaseModel):
+    
+    id : Optional[int] = None
+    nome : str
+    email : str
+    senha : str
     class Config:
         orm_mode = True
     
