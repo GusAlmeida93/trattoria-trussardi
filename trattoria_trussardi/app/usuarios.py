@@ -1,11 +1,12 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 from trattoria_trussardi.schemas import schemas
 from trattoria_trussardi.models import models
 
 class Usuarios():
     
-    def __init__(self, db : Session = None):
-        self.session = db
+    def __init__(self, session : Session):
+        self.session = session
     
     def criar(self, usuario : schemas.Usuarios):
         db_usuario = models.Usuarios(nome = usuario.nome,
@@ -19,7 +20,8 @@ class Usuarios():
 
     def listar(self):
         
-        usuarios = self.session.query(models.Usuarios).all()
+        query = select(models.Usuarios)
+        usuarios = self.session.execute(query).scalars().all()
         
         return usuarios
         
